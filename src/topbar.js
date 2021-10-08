@@ -1,5 +1,5 @@
-import React from 'react';
-import { observer } from 'mobx-react-lite';
+import React from "react";
+import { observer } from "mobx-react-lite";
 import {
   Button,
   Navbar,
@@ -8,15 +8,15 @@ import {
   Divider,
   Dialog,
   Classes,
-} from '@blueprintjs/core';
-import FaGithub from '@meronex/icons/fa/FaGithub';
-import FaDiscord from '@meronex/icons/fa/FaDiscord';
-import DownloadButton from 'polotno/toolbar/download-button';
-import { downloadFile } from 'polotno/utils/download';
+} from "@blueprintjs/core";
+import FaGithub from "@meronex/icons/fa/FaGithub";
+import FaDiscord from "@meronex/icons/fa/FaDiscord";
+import DownloadButton from "polotno/toolbar/download-button";
+import { downloadFile } from "polotno/utils/download";
 
-import styled from 'polotno/utils/styled';
+import styled from "polotno/utils/styled";
 
-const NavbarContainer = styled('div')`
+const NavbarContainer = styled("div")`
   @media screen and (max-width: 500px) {
     overflow-x: auto;
     overflow-y: hidden;
@@ -24,7 +24,7 @@ const NavbarContainer = styled('div')`
   }
 `;
 
-const NavInner = styled('div')`
+const NavInner = styled("div")`
   @media screen and (max-width: 500px) {
     display: flex;
   }
@@ -48,7 +48,7 @@ export default observer(({ store }) => {
                 .flat();
               const hasObjects = ids?.length;
               if (hasObjects) {
-                if (!window.confirm('Remove all content for a new design?')) {
+                if (!window.confirm("Remove all content for a new design?")) {
                   return;
                 }
               }
@@ -64,7 +64,7 @@ export default observer(({ store }) => {
               icon="folder-open"
               minimal
               onClick={() => {
-                document.querySelector('#load-project').click();
+                document.querySelector("#load-project").click();
               }}
             >
               Open
@@ -74,7 +74,7 @@ export default observer(({ store }) => {
               id="load-project"
               accept=".json,.polotno"
               ref={inputRef}
-              style={{ width: '180px', display: 'none' }}
+              style={{ width: "180px", display: "none" }}
               onChange={(e) => {
                 var input = e.target;
 
@@ -89,7 +89,7 @@ export default observer(({ store }) => {
                   try {
                     json = JSON.parse(text);
                   } catch (e) {
-                    alert('Can not load the project.');
+                    alert("Can not load the project.");
                   }
 
                   if (json) {
@@ -97,7 +97,7 @@ export default observer(({ store }) => {
                   }
                 };
                 reader.onerror = function () {
-                  alert('Can not load the project.');
+                  alert("Can not load the project.");
                 };
                 reader.readAsText(input.files[0]);
               }}
@@ -110,9 +110,9 @@ export default observer(({ store }) => {
               const json = store.toJSON();
 
               const url =
-                'data:text/json;base64,' +
+                "data:text/json;base64," +
                 window.btoa(unescape(encodeURIComponent(JSON.stringify(json))));
-              downloadFile(url, 'polotno.json');
+              downloadFile(url, "polotno.json");
             }}
           >
             Save
@@ -134,7 +134,7 @@ export default observer(({ store }) => {
             href="https://github.com/lavrton/polotno-studio"
             target="_blank"
             icon={
-              <FaGithub className="bp3-icon" style={{ fontSize: '20px' }} />
+              <FaGithub className="bp3-icon" style={{ fontSize: "20px" }} />
             }
           >
             Github
@@ -144,7 +144,7 @@ export default observer(({ store }) => {
             href="https://discord.gg/W2VeKgsr9J"
             target="_blank"
             icon={
-              <FaDiscord className="bp3-icon" style={{ fontSize: '20px' }} />
+              <FaDiscord className="bp3-icon" style={{ fontSize: "20px" }} />
             }
           >
             Join Chat
@@ -163,8 +163,8 @@ export default observer(({ store }) => {
           title="About Polotno Studio"
           isOpen={faqOpened}
           style={{
-            width: '80%',
-            maxWidth: '700px',
+            width: "80%",
+            maxWidth: "700px",
           }}
         >
           <div className={Classes.DIALOG_BODY}>
@@ -177,19 +177,19 @@ export default observer(({ store }) => {
             </p>
             <h2>Is it Open Source?</h2>
             <p>
-              Partially. The source code is available in{' '}
+              Partially. The source code is available in{" "}
               <a
                 href="https://github.com/lavrton/polotno-studio"
                 target="_blank"
               >
                 GitHub repository
               </a>
-              . The repository doesn't have full source.{' '}
-              <strong>Polotno Studio</strong> is powered by{' '}
+              . The repository doesn't have full source.{" "}
+              <strong>Polotno Studio</strong> is powered by{" "}
               <a href="https://polotno.dev/" target="_blank">
                 Polonto SDK project
               </a>
-              . All core "canvas editor" functionality are implemented by{' '}
+              . All core "canvas editor" functionality are implemented by{" "}
               <strong>polotno</strong> npm package (which is not open source at
               the time of writing this text).
             </p>
@@ -199,11 +199,11 @@ export default observer(({ store }) => {
             </p>
             <h2>Who is making Polotno Studio?</h2>
             <p>
-              My name is Anton Lavrenov{' '}
+              My name is Anton Lavrenov{" "}
               <a href="https://twitter.com/lavrton" target="_blank">
                 @lavrton
               </a>
-              . I am founder of Polotno project. As the maintainer of{' '}
+              . I am founder of Polotno project. As the maintainer of{" "}
               <a href="https://konvajs.org/" target="_blank">
                 Konva 2d canvas framework
               </a>
@@ -216,9 +216,9 @@ export default observer(({ store }) => {
               support the project financially?
             </h2>
             <p>
-              Instead of monetizing the end-user application{' '}
+              Instead of monetizing the end-user application{" "}
               <strong>Polotno Studio</strong> I decided to make money around
-              developers tools with{' '}
+              developers tools with{" "}
               <a href="https://polotno.dev/" target="_blank">
                 Polonto SDK
               </a>
@@ -226,17 +226,17 @@ export default observer(({ store }) => {
             </p>
             <p>
               <strong>Polotno Studio</strong> is a sandbox application and
-              polished demonstration of{' '}
+              polished demonstration of{" "}
               <a href="https://polotno.dev/" target="_blank">
                 Polonto SDK
-              </a>{' '}
+              </a>{" "}
               usage.
             </p>
             <p>
-              With{' '}
+              With{" "}
               <a href="https://polotno.dev/" target="_blank">
                 Polonto SDK
-              </a>{' '}
+              </a>{" "}
               you can build very different application with very different UI.
             </p>
           </div>

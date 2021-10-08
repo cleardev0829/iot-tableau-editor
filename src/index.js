@@ -1,18 +1,18 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import localforage from 'localforage';
-import { createStore } from 'polotno/model/store';
-import { unstable_setRemoveBackgroundEnabled } from 'polotno/config';
+import React from "react";
+import ReactDOM from "react-dom";
+import localforage from "localforage";
+import { createStore } from "polotno/model/store";
+import { unstable_setRemoveBackgroundEnabled } from "polotno/config";
 
-import './index.css';
-import App from './App';
+import "./index.css";
+import App from "./App";
 
 unstable_setRemoveBackgroundEnabled(true);
 
-const store = createStore({ key: 'nFA5H9elEytDyPyvKL7T' });
+const store = createStore({ key: "nFA5H9elEytDyPyvKL7T" });
 window.store = store;
 
-localforage.getItem('polotno-state', function (err, json) {
+localforage.getItem("polotno-state", function (err, json) {
   if (json) {
     store.loadJSON(json);
   }
@@ -21,10 +21,10 @@ localforage.getItem('polotno-state', function (err, json) {
   }
 });
 
-store.on('change', () => {
+store.on("change", () => {
   try {
     const json = store.toJSON();
-    localforage.setItem('polotno-state', json);
+    localforage.setItem("polotno-state", json);
   } catch (e) {}
 });
 
@@ -32,5 +32,5 @@ ReactDOM.render(
   <React.StrictMode>
     <App store={store} />
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
