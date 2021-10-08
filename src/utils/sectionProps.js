@@ -32,7 +32,7 @@ export const ToolbarProps = {
 
 export const SidePanelProps = {
   sections: [CustomSection, PhotosSection],
-  defaultSection: "upload",
+  defaultSection: "resources",
 };
 
 export const WorkspaceProps = {

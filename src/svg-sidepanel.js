@@ -1,16 +1,16 @@
-import React from 'react';
-import { observer } from 'mobx-react-lite';
-import { InputGroup } from '@blueprintjs/core';
+import React from "react";
+import { observer } from "mobx-react-lite";
+import { InputGroup } from "@blueprintjs/core";
 
-import { useInfiniteAPI } from 'polotno/utils/use-api';
+import { useInfiniteAPI } from "polotno/utils/use-api";
 
-import { SectionTab } from 'polotno/side-panel';
-import { svgToURL } from 'polotno/utils/svg';
-import { getKey } from 'polotno/utils/validate-key';
-import { getImageSize } from 'polotno/utils/image';
-import FaVectorSquare from '@meronex/icons/fa/FaVectorSquare';
+import { SectionTab } from "polotno/side-panel";
+import { svgToURL } from "polotno/utils/svg";
+import { getKey } from "polotno/utils/validate-key";
+import { getImageSize } from "polotno/utils/image";
+import FaVectorSquare from "@meronex/icons/fa/FaVectorSquare";
 
-import { ImagesGrid } from 'polotno/side-panel/images-grid';
+import { ImagesGrid } from "polotno/side-panel/images-grid";
 
 export const SVGPanel = observer(({ store }) => {
   // load data
@@ -23,7 +23,7 @@ export const SVGPanel = observer(({ store }) => {
   });
 
   return (
-    <div style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+    <div style={{ height: "100%", display: "flex", flexDirection: "column" }}>
       <InputGroup
         leftIcon="search"
         placeholder="Search..."
@@ -31,7 +31,7 @@ export const SVGPanel = observer(({ store }) => {
           setQuery(e.target.value);
         }}
         style={{
-          marginBottom: '20px',
+          marginBottom: "20px",
         }}
       />
       <ImagesGrid
@@ -47,7 +47,7 @@ export const SVGPanel = observer(({ store }) => {
           );
           const json = await req.json();
           const base64 = await svgToURL(json.content);
-          if (element && element.type === 'image') {
+          if (element && element.type === "image") {
             element.set({ clipSrc: base64 });
             return;
           }
@@ -55,7 +55,7 @@ export const SVGPanel = observer(({ store }) => {
           const x = (pos?.x || store.width / 2) - width / 2;
           const y = (pos?.y || store.height / 2) - height / 2;
           store.activePage?.addElement({
-            type: 'svg',
+            type: "svg",
             width,
             height,
             x,
@@ -72,7 +72,7 @@ export const SVGPanel = observer(({ store }) => {
 
 // define the new custom section
 export const VectorSection = {
-  name: 'svgapi',
+  name: "svgapi",
   Tab: (props) => (
     <SectionTab name="Icons" {...props}>
       <FaVectorSquare />
