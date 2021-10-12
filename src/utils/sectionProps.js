@@ -1,12 +1,13 @@
-import //   DEFAULT_SECTIONS,
-//   TemplatesSection,
-//   TextSection,
-//   PhotosSection,
-//   ElementsSection,
-// UploadSection,
-//   BackgroundSection,
-//   SizeSection,
-"polotno/side-panel";
+import {
+  //   DEFAULT_SECTIONS,
+  //   TemplatesSection,
+  TextSection,
+  //   PhotosSection,
+  ElementsSection,
+  // UploadSection,
+  //   BackgroundSection,
+  SizeSection,
+} from "polotno/side-panel";
 
 import CustomSection from "./CustomSection";
 import PhotosSection from "./PhotosSection";
@@ -31,7 +32,13 @@ export const ToolbarProps = {
 };
 
 export const SidePanelProps = {
-  sections: [CustomSection, PhotosSection],
+  sections: [
+    CustomSection,
+    // TextSection,
+    // ElementsSection,
+    PhotosSection,
+    // SizeSection
+  ],
   defaultSection: "resources",
 };
 

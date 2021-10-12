@@ -18,16 +18,15 @@ export const PhotosPanel = observer(({ store }) => {
 
     // for demo images are hard coded
     // in real app here will be something like JSON structure
-    setImages([
-      { url: "./tabs/Tab-01.svg" },
-      { url: "./tabs/Tab-02.svg" },
-      { url: "./tabs/Tab-03.svg" },
-      { url: "./tabs/Tab-04.svg" },
-      { url: "./tabs/Tab-05.svg" },
-      { url: "./tabs/Tab-06.svg" },
-      { url: "./tabs/Tab-07.svg" },
-      { url: "./tabs/Tab-08.svg" },
-    ]);
+
+    let urls = [...Array(60)].map((_, index) => {
+      const n = index + 1;
+      return {
+        url: `./tabs/Tab (2)-${n < 10 ? "0" + n : n}.svg`,
+      };
+    });
+
+    setImages([...urls]);
   }
 
   useEffect(() => {

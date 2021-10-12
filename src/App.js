@@ -62,7 +62,7 @@ const App = ({ store }) => {
       }}
       onDrop={handleDrop}
     >
-      {/* <Topbar store={store} /> */}
+      <Topbar store={store} />
       <div style={{ height: "calc(100% - 50px)" }}>
         <PolotnoContainer className="polotno-app-container">
           <SidePanelWrap>

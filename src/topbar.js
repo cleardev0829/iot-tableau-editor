@@ -39,7 +39,7 @@ export default observer(({ store }) => {
     <NavbarContainer className="bp3-navbar">
       <NavInner>
         <Navbar.Group align={Alignment.LEFT}>
-          <Button
+          {/* <Button
             icon="new-object"
             minimal
             onClick={() => {
@@ -58,16 +58,16 @@ export default observer(({ store }) => {
             }}
           >
             New
-          </Button>
+          </Button> */}
           <label htmlFor="load-project">
             <Button
-              icon="folder-open"
+              // icon="folder-open"
               minimal
               onClick={() => {
                 document.querySelector("#load-project").click();
               }}
             >
-              Open
+              load
             </Button>
             <input
               type="file"
@@ -104,7 +104,7 @@ export default observer(({ store }) => {
             />
           </label>
           <Button
-            icon="floppy-disk"
+            // icon="floppy-disk"
             minimal
             onClick={() => {
               const json = store.toJSON();
@@ -115,7 +115,7 @@ export default observer(({ store }) => {
               downloadFile(url, "polotno.json");
             }}
           >
-            Save
+            save
           </Button>
         </Navbar.Group>
         <Navbar.Group align={Alignment.RIGHT}>
@@ -129,12 +129,12 @@ export default observer(({ store }) => {
             style={{ height: '30px', marginBottom: '-4px' }}
           />
         </a> */}
-          <AnchorButton
+          {/* <AnchorButton
             minimal
             href="https://github.com/lavrton/polotno-studio"
             target="_blank"
             icon={
-              <FaGithub className="bp3-icon" style={{ fontSize: "20px" }} />
+              <FaGithub className="bp3-icon" style={{ fontSize: '20px' }} />
             }
           >
             Github
@@ -144,17 +144,17 @@ export default observer(({ store }) => {
             href="https://discord.gg/W2VeKgsr9J"
             target="_blank"
             icon={
-              <FaDiscord className="bp3-icon" style={{ fontSize: "20px" }} />
+              <FaDiscord className="bp3-icon" style={{ fontSize: '20px' }} />
             }
           >
             Join Chat
           </AnchorButton>
           <Button icon="info-sign" minimal onClick={() => toggleFaq(true)}>
             About
-          </Button>
+          </Button> */}
 
           <Divider />
-          <DownloadButton store={store} />
+          {/* <DownloadButton store={store} /> */}
           {/* <NavbarHeading>Polotno Studio</NavbarHeading> */}
         </Navbar.Group>
         <Dialog
