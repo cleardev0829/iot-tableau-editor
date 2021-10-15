@@ -35,7 +35,7 @@ export const ToolbarProps = {
 export const SidePanelProps = {
   sections: [
     // CustomSection,
-    // TextSection,
+    TextSection,
     // ElementsSection,
     PhotosSection,
     // VectorSection,

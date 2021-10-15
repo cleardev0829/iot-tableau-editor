@@ -37,7 +37,7 @@ const onResize = (element, callback) => {
 
 store.on("change", () => {
   const element = store.selectedElements[0];
-  if (element) {
+  if (element && element.type === "image") {
     onResize(element, () => {
       element.set({ height: elementHeight });
       element.set({ width: elementWidth });
