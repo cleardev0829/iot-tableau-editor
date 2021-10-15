@@ -41,7 +41,7 @@ export const SidePanelProps = {
     // VectorSection,
     // SizeSection,
     // BackgroundSection,
-    // SizesSection,
+    SizesSection,
   ],
   defaultSection: "resources",
 };
