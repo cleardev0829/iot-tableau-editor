@@ -26,7 +26,7 @@ const useHeight = () => {
 };
 
 function clearLog() {
-  console.clear();
+  // console.clear();
   setTimeout(clearLog, 1000);
 }
 

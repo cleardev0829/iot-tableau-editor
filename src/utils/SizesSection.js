@@ -5,9 +5,14 @@ import { Button, InputGroup } from "@blueprintjs/core";
 import { GiResize } from "react-icons/gi";
 
 const AVAILABLE_SIZES = [
+  { width: 100, height: 100 },
+  { width: 250, height: 250 },
+  { width: 250, height: 500 },
+  { width: 250, height: 250 },
   { width: 500, height: 500 },
   { width: 500, height: 1000 },
   { width: 1000, height: 500 },
+  { width: 1000, height: 1000 },
 ];
 
 // define the new custom section

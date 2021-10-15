@@ -7,8 +7,8 @@ import { unstable_setRemoveBackgroundEnabled } from "polotno/config";
 import "./index.css";
 import App from "./App";
 
-var elementHeight = 0;
-var elementWidth = 0;
+var elementHeight = 34;
+var elementWidth = 34;
 
 unstable_setRemoveBackgroundEnabled(true);
 
@@ -25,12 +25,8 @@ localforage.getItem("polotno-state", function (err, json) {
 });
 
 const onResize = (element, callback) => {
-  elementHeight = elementHeight === 0 ? element.height : elementHeight;
-  elementWidth = elementWidth === 0 ? element.width : elementWidth;
-
-  setInterval(function () {
-    callback();
-  }, 300);
+  // elementHeight = elementHeight === 0 ? element.height : elementHeight;
+  // elementWidth = elementWidth === 0 ? element.width : elementWidth;
 
   callback();
 };
@@ -39,6 +35,7 @@ store.on("change", () => {
   const element = store.selectedElements[0];
   if (element && element.type === "image") {
     onResize(element, () => {
+      console.log(elementHeight, elementWidth);
       element.set({ height: elementHeight });
       element.set({ width: elementWidth });
     });
