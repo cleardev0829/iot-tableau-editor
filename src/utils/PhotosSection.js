@@ -6,7 +6,7 @@ import { ImagesGrid } from "polotno/side-panel/images-grid";
 import MdPhotoLibrary from "@meronex/icons/md/MdPhotoLibrary";
 import { getImageSize } from "polotno/utils/image";
 
-export const PhotosPanel = observer(({ store }) => {
+const PhotosPanel = observer(({ store }) => {
   const [images, setImages] = useState([]);
 
   async function loadImages() {

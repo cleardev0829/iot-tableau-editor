@@ -1,16 +1,17 @@
 import {
-  //   DEFAULT_SECTIONS,
-  //   TemplatesSection,
+  // DEFAULT_SECTIONS,
+  // TemplatesSection,
   TextSection,
-  //   PhotosSection,
-  ElementsSection,
+  // PhotosSection,
+  // ElementsSection,
   // UploadSection,
-  //   BackgroundSection,
-  SizeSection,
+  // BackgroundSection,
+  // SizeSection,
 } from "polotno/side-panel";
-
-import CustomSection from "./CustomSection";
+// import { VectorSection } from "../svg-sidepanel";
+// import CustomSection from "./CustomSection";
 import PhotosSection from "./PhotosSection";
+import SizesSection from "./SizesSection";
 
 export const ToolbarProps = {
   downloadButtonEnabled: false,
@@ -33,11 +34,14 @@ export const ToolbarProps = {
 
 export const SidePanelProps = {
   sections: [
-    CustomSection,
-    TextSection,
+    // CustomSection,
+    // TextSection,
     // ElementsSection,
     PhotosSection,
-    // SizeSection
+    // VectorSection,
+    // SizeSection,
+    // BackgroundSection,
+    // SizesSection,
   ],
   defaultSection: "resources",
 };

@@ -4,14 +4,14 @@ import {
   Button,
   Navbar,
   Alignment,
-  AnchorButton,
+  // AnchorButton,
   Divider,
-  Dialog,
-  Classes,
+  // Dialog,
+  // Classes,
 } from "@blueprintjs/core";
-import FaGithub from "@meronex/icons/fa/FaGithub";
-import FaDiscord from "@meronex/icons/fa/FaDiscord";
-import DownloadButton from "polotno/toolbar/download-button";
+// import FaGithub from "@meronex/icons/fa/FaGithub";
+// import FaDiscord from "@meronex/icons/fa/FaDiscord";
+// import DownloadButton from "polotno/toolbar/download-button";
 import { downloadFile } from "polotno/utils/download";
 
 import styled from "polotno/utils/styled";
@@ -33,16 +33,17 @@ const NavInner = styled("div")`
 export default observer(({ store }) => {
   const inputRef = React.useRef();
 
-  const [faqOpened, toggleFaq] = React.useState(false);
+  // const [faqOpened, toggleFaq] = React.useState(false);
 
   return (
     <NavbarContainer className="bp3-navbar">
       <NavInner>
         <Navbar.Group align={Alignment.LEFT}>
-          {/* <Button
+          <Button
             icon="new-object"
             minimal
             onClick={() => {
+              console.clear();
               const ids = store.pages
                 .map((page) => page.children.map((child) => child.id))
                 .flat();
@@ -58,16 +59,16 @@ export default observer(({ store }) => {
             }}
           >
             New
-          </Button> */}
+          </Button>
           <label htmlFor="load-project">
             <Button
-              // icon="folder-open"
+              icon="folder-open"
               minimal
               onClick={() => {
                 document.querySelector("#load-project").click();
               }}
             >
-              load
+              Load
             </Button>
             <input
               type="file"
@@ -104,7 +105,7 @@ export default observer(({ store }) => {
             />
           </label>
           <Button
-            // icon="floppy-disk"
+            icon="floppy-disk"
             minimal
             onClick={() => {
               const json = store.toJSON();
@@ -115,7 +116,7 @@ export default observer(({ store }) => {
               downloadFile(url, "polotno.json");
             }}
           >
-            save
+            Save
           </Button>
         </Navbar.Group>
         <Navbar.Group align={Alignment.RIGHT}>
@@ -157,7 +158,7 @@ export default observer(({ store }) => {
           {/* <DownloadButton store={store} /> */}
           {/* <NavbarHeading>Polotno Studio</NavbarHeading> */}
         </Navbar.Group>
-        <Dialog
+        {/* <Dialog
           icon="info-sign"
           onClose={() => toggleFaq(false)}
           title="About Polotno Studio"
@@ -245,7 +246,7 @@ export default observer(({ store }) => {
               <Button onClick={() => toggleFaq(false)}>Close</Button>
             </div>
           </div>
-        </Dialog>
+        </Dialog> */}
       </NavInner>
     </NavbarContainer>
   );

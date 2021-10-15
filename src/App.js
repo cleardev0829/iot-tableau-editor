@@ -5,7 +5,6 @@ import { ZoomButtons } from "polotno/toolbar/zoom-buttons";
 import { SidePanel } from "polotno/side-panel";
 import { Workspace } from "polotno/canvas/workspace";
 import { loadFile } from "./file";
-// import { VectorSection } from './svg-sidepanel';
 import { unstable_setRemoveBackgroundEnabled } from "polotno/config";
 import Topbar from "./topbar";
 
@@ -28,7 +27,14 @@ const useHeight = () => {
   return height;
 };
 
+function clearLog() {
+  console.clear();
+  setTimeout(clearLog, 1000);
+}
+
 const App = ({ store }) => {
+  clearLog();
+
   const handleDrop = (ev) => {
     // Prevent default behavior (Prevent file from being opened)
     ev.preventDefault();
