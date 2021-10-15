@@ -15,8 +15,6 @@ import {
   WorkspaceProps,
 } from "./utils/sectionProps";
 
-unstable_setRemoveBackgroundEnabled(false); // hide Remove background
-
 const useHeight = () => {
   const [height, setHeight] = React.useState(window.innerHeight);
   React.useEffect(() => {
@@ -33,6 +31,7 @@ function clearLog() {
 }
 
 const App = ({ store }) => {
+  unstable_setRemoveBackgroundEnabled(false); // hide Remove background
   clearLog();
 
   const handleDrop = (ev) => {
