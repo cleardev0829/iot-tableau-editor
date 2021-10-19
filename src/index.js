@@ -7,8 +7,8 @@ import { unstable_setRemoveBackgroundEnabled } from "polotno/config";
 import "./index.css";
 import App from "./App";
 
-var elementHeight = 34;
-var elementWidth = 34;
+var elementHeight = 34 * 3.7795275591;
+var elementWidth = 34 * 3.7795275591;
 
 unstable_setRemoveBackgroundEnabled(true);
 

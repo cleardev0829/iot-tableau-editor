@@ -4,6 +4,7 @@ import { SectionTab } from "polotno/side-panel";
 import { Button, InputGroup } from "@blueprintjs/core";
 import { GiResize } from "react-icons/gi";
 
+const PX = 0.2645833333;
 const AVAILABLE_SIZES = [
   { width: 100, height: 100 },
   { width: 250, height: 250 },
@@ -17,7 +18,10 @@ const AVAILABLE_SIZES = [
 
 // define the new custom section
 const SizesPanel = observer(({ store }) => {
-  const [size, setSize] = useState({ width: 1000, height: 1000 });
+  const [size, setSize] = useState({
+    width: 1000 * PX,
+    height: 1000 * PX,
+  });
 
   useEffect(() => {
     store.setSize(parseInt(size.width), parseInt(size.height));
@@ -76,7 +80,7 @@ const SizesPanel = observer(({ store }) => {
           key={i}
           style={{ width: "100%", marginBottom: "20px" }}
           onClick={() => {
-            store.setSize(width, height);
+            store.setSize(width * PX, height * PX);
           }}
         >
           {width}x{height}
