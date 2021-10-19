@@ -25,9 +25,6 @@ localforage.getItem("polotno-state", function (err, json) {
 });
 
 const onResize = (element, callback) => {
-  // elementHeight = elementHeight === 0 ? element.height : elementHeight;
-  // elementWidth = elementWidth === 0 ? element.width : elementWidth;
-
   callback();
 };
 
@@ -35,9 +32,7 @@ store.on("change", () => {
   const element = store.selectedElements[0];
   if (element && element.type === "image") {
     onResize(element, () => {
-      console.log(elementHeight, elementWidth);
-      element.set({ height: elementHeight });
-      element.set({ width: elementWidth });
+      element.set({ height: elementHeight, width: elementWidth });
     });
   }
 
