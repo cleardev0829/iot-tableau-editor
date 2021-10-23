@@ -3,17 +3,15 @@ import ReactDOM from "react-dom";
 import localforage from "localforage";
 import { createStore } from "polotno/model/store";
 import { unstable_setRemoveBackgroundEnabled } from "polotno/config";
-
 import "./index.css";
 import App from "./App";
-
-var elementHeight = 34 * 3.7795275591;
-var elementWidth = 34 * 3.7795275591;
 
 unstable_setRemoveBackgroundEnabled(true);
 
 const store = createStore({ key: "UQKDEeydnVt8g1XADyNV" });
 window.store = store;
+
+store.setSize(1932, 1932);
 
 localforage.getItem("polotno-state", function (err, json) {
   if (json) {
@@ -29,12 +27,24 @@ const onResize = (element, callback) => {
 };
 
 store.on("change", () => {
-  const element = store.selectedElements[0];
-  if (element && element.type === "image") {
-    onResize(element, () => {
-      element.set({ height: elementHeight, width: elementWidth });
-    });
-  }
+  const elements = store.selectedElements;
+  elements.map((element) => {
+    console.log("element", element);
+    if (element && element.type === "image") {
+      if (element.custom) {
+        onResize(element, () => {
+          element.set({
+            height: element.custom.height,
+            width: element.custom.width,
+          });
+        });
+      } else {
+        element.set({
+          custom: { width: element.width, height: element.height },
+        });
+      }
+    }
+  });
 
   try {
     const json = store.toJSON();

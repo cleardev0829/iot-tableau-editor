@@ -34,6 +34,7 @@ export const ToolbarProps = {
 
 export const SidePanelProps = {
   sections: [
+    SizesSection,
     // CustomSection,
     TextSection,
     // ElementsSection,
@@ -41,9 +42,8 @@ export const SidePanelProps = {
     // VectorSection,
     // SizeSection,
     // BackgroundSection,
-    SizesSection,
   ],
-  defaultSection: "resources",
+  defaultSection: "sizes",
 };
 
 export const WorkspaceProps = {

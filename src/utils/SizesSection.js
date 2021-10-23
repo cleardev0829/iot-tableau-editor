@@ -4,27 +4,26 @@ import { SectionTab } from "polotno/side-panel";
 import { Button, InputGroup } from "@blueprintjs/core";
 import { GiResize } from "react-icons/gi";
 
+const rateDown = 34 / 483;
+const rateUp = 483 / 34;
+
 const AVAILABLE_SIZES = [
-  { width: 100, height: 250 },
-  { width: 250, height: 250 },
+  // { width: 1932, height: 1932 },
 ];
 
 // define the new custom section
 const SizesPanel = observer(({ store }) => {
   const [size, setSize] = useState({
-    width: 100,
-    height: 250,
+    width: 1932,
+    height: 1932,
   });
 
   useEffect(() => {
-    store.setSize(
-      parseInt(size.width * 3.7795275591),
-      parseInt(size.height * 3.7795275591)
-    );
+    store.setSize(parseFloat(size.width), parseFloat(size.height));
   }, [store, size]);
 
   const handleChange = (e) => {
-    setSize({ ...size, [e.target.name]: e.target.value });
+    setSize({ ...size, [e.target.name]: e.target.value * rateUp });
   };
 
   return (
@@ -42,7 +41,7 @@ const SizesPanel = observer(({ store }) => {
         Width(mm)
         <InputGroup
           name="width"
-          value={size.width}
+          value={size.width * rateDown}
           onChange={handleChange}
           style={{
             width: "150px",
@@ -63,7 +62,7 @@ const SizesPanel = observer(({ store }) => {
         Height(mm)
         <InputGroup
           name="height"
-          value={size.height}
+          value={size.height * rateDown}
           onChange={handleChange}
           style={{
             width: "150px",
@@ -76,7 +75,7 @@ const SizesPanel = observer(({ store }) => {
           key={i}
           style={{ width: "100%", marginBottom: "20px" }}
           onClick={() => {
-            store.setSize(width * 3.7795275591, height * 3.7795275591);
+            store.setSize(width, height);
           }}
         >
           {`${width}mmx${height}mm`}
@@ -87,7 +86,7 @@ const SizesPanel = observer(({ store }) => {
 });
 
 const SizesSection = {
-  name: "sized",
+  name: "sizes",
   Tab: (props) => (
     <SectionTab name="Sizes" {...props}>
       <GiResize icon="new-text-box" />

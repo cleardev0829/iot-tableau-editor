@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { observer } from "mobx-react-lite";
+import _ from "lodash";
 import { SectionTab } from "polotno/side-panel";
-import { InputGroup } from "@blueprintjs/core";
+import { Tab, Tabs } from "@blueprintjs/core";
 import { ImagesGrid } from "polotno/side-panel/images-grid";
 import MdPhotoLibrary from "@meronex/icons/md/MdPhotoLibrary";
 import { getImageSize } from "polotno/utils/image";
 
 const PhotosPanel = observer(({ store }) => {
   const [images, setImages] = useState([]);
+  const [selectedTabId, setSelectedTabId] = useState("MT42");
 
   async function loadImages() {
     // here we should implement your own API requests
@@ -19,13 +21,47 @@ const PhotosPanel = observer(({ store }) => {
     // for demo images are hard coded
     // in real app here will be something like JSON structure
 
-    let urls = [...Array(60)].map((_, index) => {
+    const MT42 = [...Array(20)].map((_, index) => {
       const n = index + 1;
+
       return {
-        url: `./tabs/Tab (2)-${n < 10 ? "0" + n : n}.svg`,
+        url: `./tabs/png/MT42/MT42 (${n}).png`,
       };
     });
 
+    const RT42 = [...Array(29)].map((_, index) => {
+      const n = index + 1;
+
+      return {
+        url: `./tabs/png/RT42/RT42 (${n}).png`,
+      };
+    });
+
+    const DISPLAYS = [...Array(4)].map((_, index) => {
+      const n = index + 1;
+
+      return {
+        url: `./tabs/png/DISPLAYS/DISPLAYS (${n}).png`,
+      };
+    });
+
+    const ENGRAVINGS = [...Array(7)].map((_, index) => {
+      const n = index + 1;
+
+      return {
+        url: `./tabs/png/ENGRAVINGS/ENGRAVINGS (${n}).png`,
+      };
+    });
+
+    const OTHERS = [...Array(2)].map((_, index) => {
+      const n = index + 1;
+
+      return {
+        url: `./tabs/png/OTHERS/OTHERS (${n}).png`,
+      };
+    });
+
+    const urls = _.concat(MT42, RT42, DISPLAYS, ENGRAVINGS, OTHERS);
     setImages([...urls]);
   }
 
@@ -33,9 +69,13 @@ const PhotosPanel = observer(({ store }) => {
     loadImages();
   }, []);
 
+  const handleTabChange = (tabId) => {
+    setSelectedTabId(tabId);
+  };
+
   return (
     <div style={{ height: "100%", display: "flex", flexDirection: "column" }}>
-      <InputGroup
+      {/* <InputGroup
         leftIcon="search"
         placeholder="Search..."
         onChange={(e) => {
@@ -44,12 +84,23 @@ const PhotosPanel = observer(({ store }) => {
         style={{
           marginBottom: "20px",
         }}
-      />
-      <p>Demo images: </p>
-      {/* you can create yur own custom component here */}
-      {/* but we will use built-in grid component */}
+      /> */}
+
+      <Tabs
+        id="Tabs"
+        animate={true}
+        onChange={handleTabChange}
+        selectedTabId={selectedTabId}
+      >
+        <Tab id="MT42" title="MT42" style={{ marginRight: 10 }} />
+        <Tab id="RT42" title="RT42" style={{ marginRight: 10 }} />
+        <Tab id="DISPLAYS" title="DISPLAYS" style={{ marginRight: 10 }} />
+        <Tab id="ENGRAVINGS" title="ENGRAVINGS" style={{ marginRight: 10 }} />
+        <Tab id="OTHERS" title="OTHERS" style={{ marginRight: 10 }} />
+      </Tabs>
+
       <ImagesGrid
-        images={images}
+        images={_.filter(images, (image) => image.url.includes(selectedTabId))}
         getPreview={(image) => image.url}
         onSelect={async (image, pos, element) => {
           // image - an item from your array
