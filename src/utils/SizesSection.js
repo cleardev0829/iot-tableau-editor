@@ -13,18 +13,24 @@ const AVAILABLE_SIZES = [
 
 // define the new custom section
 const SizesPanel = observer(({ store }) => {
-  const [size, setSize] = useState({
+  const [pixelSize, setPixelSize] = useState({
     width: store.width,
     height: store.height,
   });
 
+  const [size, setSize] = useState({
+    width: store.width * rateDown,
+    height: store.height * rateDown,
+  });
+
   console.log(store.width, store.height);
   useEffect(() => {
-    store.setSize(parseFloat(size.width), parseFloat(size.height));
-  }, [store, size]);
+    store.setSize(parseFloat(pixelSize.width), parseFloat(pixelSize.height));
+  }, [store, pixelSize]);
 
   const handleChange = (e) => {
-    setSize({ ...size, [e.target.name]: e.target.value * rateUp });
+    setPixelSize({ ...pixelSize, [e.target.name]: e.target.value * rateUp });
+    setSize({ ...size, [e.target.name]: e.target.value });
   };
 
   return (
@@ -42,7 +48,7 @@ const SizesPanel = observer(({ store }) => {
         Width(mm)
         <InputGroup
           name="width"
-          value={size.width * rateDown}
+          value={size.width}
           onChange={handleChange}
           style={{
             width: "150px",
@@ -63,7 +69,7 @@ const SizesPanel = observer(({ store }) => {
         Height(mm)
         <InputGroup
           name="height"
-          value={size.height * rateDown}
+          value={size.height}
           onChange={handleChange}
           style={{
             width: "150px",
