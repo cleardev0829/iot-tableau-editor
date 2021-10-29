@@ -14,7 +14,7 @@ import PhotosSection from "./PhotosSection";
 import SizesSection from "./SizesSection";
 
 export const ToolbarProps = {
-  downloadButtonEnabled: false,
+  downloadButtonEnabled: true,
 
   hideTextSpacing: true,
   hideTextEffects: true,
