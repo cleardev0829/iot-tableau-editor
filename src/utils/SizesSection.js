@@ -14,10 +14,11 @@ const AVAILABLE_SIZES = [
 // define the new custom section
 const SizesPanel = observer(({ store }) => {
   const [size, setSize] = useState({
-    width: 1932,
-    height: 1932,
+    width: store.width,
+    height: store.height,
   });
 
+  console.log(store.width, store.height);
   useEffect(() => {
     store.setSize(parseFloat(size.width), parseFloat(size.height));
   }, [store, size]);
