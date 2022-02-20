@@ -16,7 +16,7 @@ import { downloadFile } from "polotno/utils/download";
 
 import styled from "polotno/utils/styled";
 
-import { dataURLtoFile } from "./file";
+import { dataURLtoFile, makeid } from "./file";
 import uploadFileToBlob from "./utils/azure-storage-blob";
 
 const NavbarContainer = styled("div")`
@@ -134,9 +134,9 @@ export default observer(({ store }) => {
               const url =
                 "data:text/json;base64," +
                 window.btoa(unescape(encodeURIComponent(JSON.stringify(json))));
-              const filename = "newfile";
+              const filename = makeid(10);
 
-              var file = dataURLtoFile(url, filename);
+              var file = dataURLtoFile(url, `${filename}.json`);
               uploadFileToBlob(file);
               console.log(file);
             }}
