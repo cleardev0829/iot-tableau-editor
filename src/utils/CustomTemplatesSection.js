@@ -35,8 +35,10 @@ export const TemplatesPanel = observer(({ store }) => {
         images={data}
         getPreview={(item) => {
           const name = path.basename(item);
-          console.log("====", `${name}.png`);
-          return `${name}.png`;
+          const ext = path.extname(item);
+          const nameWithoutExt = path.basename(name, ext);
+          console.log("====", `${nameWithoutExt}.png`);
+          return `${nameWithoutExt}.png`;
         }}
         isLoading={loading}
         onSelect={async (item) => {
