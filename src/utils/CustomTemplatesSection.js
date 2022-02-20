@@ -15,7 +15,7 @@ export const TemplatesPanel = observer(({ store }) => {
     getAPI: ({ page }) => `templates/page${page}.json`,
   });
 
-  const folder = "templates";
+  // const folder = "templates";
   // const files = fs.readdirSync(folder);
   // for (const file of files) {
   //   // if it is not a json file - skip it
@@ -34,15 +34,17 @@ export const TemplatesPanel = observer(({ store }) => {
       <ImagesGrid
         shadowEnabled={false}
         images={[
-          "https://rocketiotparserstorage.blob.core.windows.net/tableau-templates/polotno.json",
+          `https://rocketiotparserstorage.blob.core.windows.net/tableau-templates/polotno.json`,
         ]}
-        getPreview={(item) => `/templates/${item.preview}`}
-        isLoading={isLoading}
+        getPreview={(item) =>
+          `https://rocketiotparserstorage.blob.core.windows.net/tableau-templates/polotno.json`
+        }
+        isLoading={false}
         onSelect={async (item) => {
           alert();
           // download selected json
           const req = await fetch(
-            "https://rocketiotparserstorage.blob.core.windows.net/tableau-templates/polotno.json"
+            `https://rocketiotparserstorage.blob.core.windows.net/tableau-templates/polotno.json`
           );
           const json = await req.json();
           // just inject it into store
