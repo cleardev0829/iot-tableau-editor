@@ -146,7 +146,6 @@ export default observer(({ store }) => {
               const imageURL = "data:image/png;base64," + imageBase64;
               const imageFile = dataURLtoFile(imageURL, `${filename}.png`);
               uploadFileToBlob(imageFile);
-              downloadFile(imageURL, `${filename}.png`);
             }}
           >
             Save to Template
