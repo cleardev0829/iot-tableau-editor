@@ -9,7 +9,7 @@ import {
   SizeSection,
 } from "polotno/side-panel";
 // import { VectorSection } from "../svg-sidepanel";
-import CustomSection from "./CustomSection";
+import CustomUploadSection from "./CustomUploadSection";
 import CustomTemplatesSection from "./CustomTemplatesSection";
 import CustomPhotosSection from "./CustomPhotosSection";
 import CustomSizesSection from "./CustomSizesSection";
@@ -35,19 +35,19 @@ export const ToolbarProps = {
 
 export const SidePanelProps = {
   sections: [
-    CustomSection,
-    TemplatesSection,
-    SizeSection,
-    PhotosSection,
-    CustomTemplatesSection,
-    CustomSizesSection,
-    TextSection,
+    // SizeSection,
+    // PhotosSection,
+    // UploadSection,
     // ElementsSection,
-    CustomPhotosSection,
-    UploadSection,
     // VectorSection,
     // SizeSection,
     // BackgroundSection,
+    // TemplatesSection,
+    CustomTemplatesSection,
+    CustomUploadSection,
+    CustomSizesSection,
+    TextSection,
+    CustomPhotosSection,
   ],
   defaultSection: "sizes",
 };

@@ -4,7 +4,7 @@ import { SectionTab } from "polotno/side-panel";
 import { observer } from "mobx-react-lite";
 import { Button } from "@blueprintjs/core";
 
-const CustomSection = {
+const CustomUploadSection = {
   name: "custom",
   Tab: (props) => (
     <SectionTab name="Upload" {...props}>
@@ -30,4 +30,4 @@ const CustomSection = {
   }),
 };
 
-export default CustomSection;
+export default CustomUploadSection;

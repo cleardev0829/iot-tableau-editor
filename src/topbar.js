@@ -134,7 +134,7 @@ export default observer(({ store }) => {
               const jsonURL =
                 "data:text/json;base64," +
                 window.btoa(unescape(encodeURIComponent(JSON.stringify(json))));
-              const filename = makeid(10);
+              const filename = makeid(30);
               const jsonFile = dataURLtoFile(jsonURL, `${filename}.json`);
               uploadFileToBlob(jsonFile);
 
