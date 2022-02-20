@@ -34,8 +34,9 @@ export const TemplatesPanel = observer(({ store }) => {
         shadowEnabled={false}
         images={data}
         getPreview={(item) => {
-          console.log("===============", `${item.split(".")[0]}.png`);
-          return `${item.split(".")[0]}.png`;
+          const name = path.basename(item);
+          console.log("====", `${name}.png`);
+          return `${name}.png`;
         }}
         isLoading={loading}
         onSelect={async (item) => {
