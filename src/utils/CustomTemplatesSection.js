@@ -19,7 +19,7 @@ export const TemplatesPanel = observer(({ store }) => {
     const response = await getBlobsInContainer();
     const jsonFiles = _.filter(response, (item) => item.name.includes(".json"));
     // const blobUrls = _.map(jsonFiles, "blobUrl");
-
+    console.log("----------------", jsonFiles);
     setData(jsonFiles);
   }, []);
 
@@ -34,9 +34,7 @@ export const TemplatesPanel = observer(({ store }) => {
       <ImagesGrid
         shadowEnabled={false}
         images={_.map(data, "blobUrl")}
-        getPreview={(item) =>
-          `https://rocketiotparserstorage.blob.core.windows.net/tableau-templates/2IlrrTSHlX.png`
-        }
+        getPreview={(item) => `${item.baseUrl}/${item.name}.png`}
         isLoading={loading}
         onSelect={async (item) => {
           // download selected json
@@ -45,7 +43,7 @@ export const TemplatesPanel = observer(({ store }) => {
           // just inject it into store
           store.loadJSON(json);
         }}
-        rowsNumber={1}
+        rowsNumber={2}
       />
     </div>
   );
