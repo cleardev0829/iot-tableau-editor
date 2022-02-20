@@ -2,6 +2,7 @@ import React from "react";
 import FaShapes from "@meronex/icons/fa/FaShapes";
 import { SectionTab } from "polotno/side-panel";
 import { observer } from "mobx-react-lite";
+import { Button } from "@blueprintjs/core";
 
 const CustomSection = {
   name: "custom",
@@ -15,6 +16,15 @@ const CustomSection = {
     return (
       <div>
         <p>Upload photos you like here</p>
+        <Button
+          icon={"icon"}
+          style={{ width: "100%", marginBottom: "20px" }}
+          onClick={() => {
+            document.querySelector("#load-project").click();
+          }}
+        >
+          Upload Image
+        </Button>
       </div>
     );
   }),

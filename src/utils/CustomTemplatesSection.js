@@ -34,11 +34,7 @@ export const TemplatesPanel = observer(({ store }) => {
         shadowEnabled={false}
         images={data}
         getPreview={(item) => {
-          const name = path.basename(item);
-          const ext = path.extname(item);
-          const nameWithoutExt = path.basename(name, ext);
-          console.log("====", `${nameWithoutExt}.png`);
-          return `${nameWithoutExt}.png`;
+          return `${item.replace(/\.[^/.]+$/, "")}.png`;
         }}
         isLoading={loading}
         onSelect={async (item) => {
