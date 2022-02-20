@@ -18,9 +18,8 @@ export const TemplatesPanel = observer(({ store }) => {
   useEffect(async () => {
     const response = await getBlobsInContainer();
     const jsonFiles = _.filter(response, (item) => item.name.includes(".json"));
-    // const blobUrls = _.map(jsonFiles, "blobUrl");
-    console.log("----------------", jsonFiles);
-    setData(jsonFiles);
+    const jsonUrls = _.map(jsonFiles, "blobUrl");
+    setData(jsonUrls);
   }, []);
 
   useEffect(() => {
@@ -33,8 +32,8 @@ export const TemplatesPanel = observer(({ store }) => {
     <div style={{ height: "100%" }}>
       <ImagesGrid
         shadowEnabled={false}
-        images={_.map(data, "blobUrl")}
-        getPreview={(item) => `${item.baseUrl}/${item.name}.png`}
+        images={data}
+        getPreview={(item) => `${item.split(".")[0]}.png`}
         isLoading={loading}
         onSelect={async (item) => {
           // download selected json
