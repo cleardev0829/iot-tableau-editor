@@ -128,17 +128,25 @@ export default observer(({ store }) => {
           <Button
             icon="floppy-disk"
             minimal
-            onClick={() => {
+            onClick={async () => {
               const json = store.toJSON();
 
-              const url =
+              const jsonURL =
                 "data:text/json;base64," +
                 window.btoa(unescape(encodeURIComponent(JSON.stringify(json))));
               const filename = makeid(10);
+              const jsonFile = dataURLtoFile(jsonURL, `${filename}.json`);
+              uploadFileToBlob(jsonFile);
 
-              var file = dataURLtoFile(url, `${filename}.json`);
-              uploadFileToBlob(file);
-              console.log(file);
+              const maxWidth = 200;
+              const scale = maxWidth / store.width;
+              const imageBase64 = await store
+                .toDataURL({ pixelRatio: scale })
+                .split("base64,")[1];
+              const imageURL = "data:image/png;base64," + imageBase64;
+              const imageFile = dataURLtoFile(imageURL, `${filename}.png`);
+              uploadFileToBlob(imageFile);
+              downloadFile(imageURL, `${filename}.png`);
             }}
           >
             Save to Template

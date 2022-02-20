@@ -12,19 +12,15 @@ import { ImagesGrid } from "polotno/side-panel/images-grid";
 import { getBlobsInContainer } from "./azure-storage-blob";
 
 export const TemplatesPanel = observer(({ store }) => {
-  // load data
-  // const { data, isLoading } = useInfiniteAPI({
-  //   getAPI: ({ page }) => `templates/page${page}.json`,
-  // });
-
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(async () => {
     const response = await getBlobsInContainer();
-    const blobUrls = _.map(response, "blobUrl");
+    const jsonFiles = _.filter(response, (item) => item.name.includes(".json"));
+    // const blobUrls = _.map(jsonFiles, "blobUrl");
 
-    setData(blobUrls);
+    setData(jsonFiles);
   }, []);
 
   useEffect(() => {
@@ -37,10 +33,8 @@ export const TemplatesPanel = observer(({ store }) => {
     <div style={{ height: "100%" }}>
       <ImagesGrid
         shadowEnabled={false}
-        images={data}
-        getPreview={(item) =>
-          `https://rocketiotparserstorage.blob.core.windows.net/tableau-templates/polotno.json`
-        }
+        images={_.map(data, "blobUrl")}
+        getPreview={(item) => `${item.baseUrl}/${item.name}.png`}
         isLoading={loading}
         onSelect={async (item) => {
           // download selected json

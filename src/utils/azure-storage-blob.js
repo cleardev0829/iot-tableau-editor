@@ -48,7 +48,9 @@ export const getBlobsInContainer = async () => {
 
     blobList.push({
       id: index,
-      name: blob.name,
+      name: blob.name.split()[0],
+      extension: blob.name.split()[1],
+      baseUrl: `https://${storageAccountName}.blob.core.windows.net/${containerName}`,
       blobUrl: blobUrl,
       contentType: blob.properties.contentType,
       contentLength: blob.properties.contentLength,
