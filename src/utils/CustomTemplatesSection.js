@@ -34,7 +34,9 @@ export const TemplatesPanel = observer(({ store }) => {
       <ImagesGrid
         shadowEnabled={false}
         images={_.map(data, "blobUrl")}
-        getPreview={(item) => `${item.baseUrl}/${item.name}.png`}
+        getPreview={(item) =>
+          `https://rocketiotparserstorage.blob.core.windows.net/tableau-templates/2IlrrTSHlX.png`
+        }
         isLoading={loading}
         onSelect={async (item) => {
           // download selected json
