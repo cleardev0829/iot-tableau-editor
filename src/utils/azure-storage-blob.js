@@ -8,7 +8,7 @@ import { BlobServiceClient, ContainerClient } from "@azure/storage-blob";
 const sasToken =
   process.env.storagesastoken ||
   "sv=2020-08-04&ss=bfqt&srt=sco&sp=rwdlacupix&se=2022-12-31T13:10:11Z&st=2022-01-31T05:10:11Z&spr=https&sig=CHgfCT%2FZpJQXb%2F%2B1s0xuiWVkQW7VP78eFFeIPtCXw8Q%3D"; // Fill string with your SAS token
-const containerName = `rocket-iot-files`;
+const containerName = `tableau-templates`;
 const storageAccountName =
   process.env.storageresourcename || "rocketiotparserstorage"; // Fill string with your Storage resource name
 // </snippet_package>
@@ -57,7 +57,7 @@ export const getBlobsInContainer = async () => {
       // lastAccessOn: moment(blob.properties.lastAccessOn)
     });
   }
-
+  console.log(blobList);
   return blobList;
 };
 // </snippet_getBlobsInContainer>

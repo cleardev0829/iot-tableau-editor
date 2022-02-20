@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import fs from "fs";
 import path from "path";
+import _ from "lodash";
 import { observer } from "mobx-react-lite";
 import { useInfiniteAPI } from "polotno/utils/use-api";
 
@@ -8,40 +9,40 @@ import { SectionTab } from "polotno/side-panel";
 import MdPhotoLibrary from "@meronex/icons/md/MdPhotoLibrary";
 
 import { ImagesGrid } from "polotno/side-panel/images-grid";
+import { getBlobsInContainer } from "./azure-storage-blob";
 
 export const TemplatesPanel = observer(({ store }) => {
   // load data
-  const { data, isLoading } = useInfiniteAPI({
-    getAPI: ({ page }) => `templates/page${page}.json`,
-  });
+  // const { data, isLoading } = useInfiniteAPI({
+  //   getAPI: ({ page }) => `templates/page${page}.json`,
+  // });
 
-  // const folder = "templates";
-  // const files = fs.readdirSync(folder);
-  // for (const file of files) {
-  //   // if it is not a json file - skip it
-  //   if (file.indexOf(".json") === -1) {
-  //     continue;
-  //   }
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  //   // load file
-  //   const data = fs.readFileSync(path.join(folder, file)).toString();
-  //   const json = JSON.parse(data);
-  //   console.log("========================", data, json);
-  // }
+  useEffect(async () => {
+    const response = await getBlobsInContainer();
+    const blobUrls = _.map(response, "blobUrl");
+    console.log("=====", response, blobUrls);
+    setData(blobUrls);
+  }, []);
+
+  useEffect(() => {
+    if (data.length > 0) {
+      setLoading(false);
+    }
+  }, [data]);
 
   return (
     <div style={{ height: "100%" }}>
       <ImagesGrid
         shadowEnabled={false}
-        images={[
-          `https://rocketiotparserstorage.blob.core.windows.net/tableau-templates/polotno.json`,
-        ]}
+        images={data}
         getPreview={(item) =>
           `https://rocketiotparserstorage.blob.core.windows.net/tableau-templates/polotno.json`
         }
-        isLoading={false}
+        isLoading={loading}
         onSelect={async (item) => {
-          alert();
           // download selected json
           const req = await fetch(
             `https://rocketiotparserstorage.blob.core.windows.net/tableau-templates/polotno.json`
