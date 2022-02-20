@@ -1,20 +1,21 @@
 import {
   // DEFAULT_SECTIONS,
-  // TemplatesSection,
+  TemplatesSection,
   TextSection,
-  // PhotosSection,
+  PhotosSection,
   // ElementsSection,
-  // UploadSection,
+  UploadSection,
   // BackgroundSection,
-  // SizeSection,
+  SizeSection,
 } from "polotno/side-panel";
 // import { VectorSection } from "../svg-sidepanel";
-// import CustomSection from "./CustomSection";
-import PhotosSection from "./PhotosSection";
-import SizesSection from "./SizesSection";
+import CustomSection from "./CustomSection";
+import CustomTemplatesSection from "./CustomTemplatesSection";
+import CustomPhotosSection from "./CustomPhotosSection";
+import CustomSizesSection from "./CustomSizesSection";
 
 export const ToolbarProps = {
-  downloadButtonEnabled: true,
+  downloadButtonEnabled: false,
 
   hideTextSpacing: true,
   hideTextEffects: true,
@@ -34,11 +35,16 @@ export const ToolbarProps = {
 
 export const SidePanelProps = {
   sections: [
-    SizesSection,
-    // CustomSection,
+    CustomSection,
+    TemplatesSection,
+    SizeSection,
+    PhotosSection,
+    CustomTemplatesSection,
+    CustomSizesSection,
     TextSection,
     // ElementsSection,
-    PhotosSection,
+    CustomPhotosSection,
+    UploadSection,
     // VectorSection,
     // SizeSection,
     // BackgroundSection,

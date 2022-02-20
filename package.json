@@ -11,6 +11,7 @@
     "concurrently": "^6.2.1"
   },
   "dependencies": {
+    "@azure/storage-blob": "^12.8.0",
     "@blueprintjs/docs-theme": "^3.10.17",
     "@meronex/icons": "^4.0.0",
     "localforage": "^1.10.0",

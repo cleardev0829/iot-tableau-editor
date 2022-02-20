@@ -34,7 +34,7 @@ function clearLog() {
 const App = ({ store }) => {
   console.log("store:", store);
   unstable_setRemoveBackgroundEnabled(false); // hide Remove background
-  clearLog();
+  // clearLog();
 
   const handleDrop = (ev) => {
     // Prevent default behavior (Prevent file from being opened)

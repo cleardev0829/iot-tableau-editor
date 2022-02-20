@@ -125,7 +125,7 @@ const PhotosPanel = observer(({ store }) => {
   );
 });
 // define the new custom section
-const PhotosSection = {
+const CustomPhotosSection = {
   name: "resources",
   Tab: (props) => (
     <SectionTab name="Resources" {...props}>
@@ -135,4 +135,4 @@ const PhotosSection = {
   Panel: PhotosPanel,
 };
 
-export default PhotosSection;
+export default CustomPhotosSection;

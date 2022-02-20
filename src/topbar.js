@@ -11,7 +11,7 @@ import {
 } from "@blueprintjs/core";
 // import FaGithub from "@meronex/icons/fa/FaGithub";
 // import FaDiscord from "@meronex/icons/fa/FaDiscord";
-// import DownloadButton from "polotno/toolbar/download-button";
+import DownloadButton from "polotno/toolbar/download-button";
 import { downloadFile } from "polotno/utils/download";
 
 import styled from "polotno/utils/styled";
@@ -109,6 +109,7 @@ export default observer(({ store }) => {
             minimal
             onClick={() => {
               const json = store.toJSON();
+              // const image = store.toSaveAsImage();
 
               const url =
                 "data:text/json;base64," +
@@ -155,7 +156,7 @@ export default observer(({ store }) => {
           </Button> */}
 
           <Divider />
-          {/* <DownloadButton store={store} /> */}
+          <DownloadButton store={store} />
           {/* <NavbarHeading>Polotno Studio</NavbarHeading> */}
         </Navbar.Group>
         {/* <Dialog

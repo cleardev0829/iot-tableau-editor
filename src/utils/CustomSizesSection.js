@@ -92,7 +92,7 @@ const SizesPanel = observer(({ store }) => {
   );
 });
 
-const SizesSection = {
+const CustomSizesSection = {
   name: "sizes",
   Tab: (props) => (
     <SectionTab name="Sizes" {...props}>
@@ -102,4 +102,4 @@ const SizesSection = {
   Panel: SizesPanel,
 };
 
-export default SizesSection;
+export default CustomSizesSection;
