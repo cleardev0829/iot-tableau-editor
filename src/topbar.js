@@ -16,6 +16,9 @@ import { downloadFile } from "polotno/utils/download";
 
 import styled from "polotno/utils/styled";
 
+import { dataURLtoFile } from "./file";
+import uploadFileToBlob from "./utils/azure-storage-blob";
+
 const NavbarContainer = styled("div")`
   @media screen and (max-width: 500px) {
     overflow-x: auto;
@@ -86,6 +89,7 @@ export default observer(({ store }) => {
                 var reader = new FileReader();
                 reader.onloadend = function () {
                   var text = reader.result;
+
                   let json;
                   try {
                     json = JSON.parse(text);
@@ -109,15 +113,35 @@ export default observer(({ store }) => {
             minimal
             onClick={() => {
               const json = store.toJSON();
+
               // const image = store.toSaveAsImage();
 
               const url =
                 "data:text/json;base64," +
                 window.btoa(unescape(encodeURIComponent(JSON.stringify(json))));
+
               downloadFile(url, "polotno.json");
             }}
           >
             Save
+          </Button>
+          <Button
+            icon="floppy-disk"
+            minimal
+            onClick={() => {
+              const json = store.toJSON();
+
+              const url =
+                "data:text/json;base64," +
+                window.btoa(unescape(encodeURIComponent(JSON.stringify(json))));
+              const filename = "newfile";
+
+              var file = dataURLtoFile(url, filename);
+              uploadFileToBlob(file);
+              console.log(file);
+            }}
+          >
+            Save to Template
           </Button>
         </Navbar.Group>
         <Navbar.Group align={Alignment.RIGHT}>

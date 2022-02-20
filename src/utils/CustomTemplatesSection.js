@@ -23,7 +23,7 @@ export const TemplatesPanel = observer(({ store }) => {
   useEffect(async () => {
     const response = await getBlobsInContainer();
     const blobUrls = _.map(response, "blobUrl");
-    console.log("=====", response, blobUrls);
+
     setData(blobUrls);
   }, []);
 
@@ -44,9 +44,7 @@ export const TemplatesPanel = observer(({ store }) => {
         isLoading={loading}
         onSelect={async (item) => {
           // download selected json
-          const req = await fetch(
-            `https://rocketiotparserstorage.blob.core.windows.net/tableau-templates/polotno.json`
-          );
+          const req = await fetch(item);
           const json = await req.json();
           // just inject it into store
           store.loadJSON(json);
