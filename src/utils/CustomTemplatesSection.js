@@ -33,7 +33,10 @@ export const TemplatesPanel = observer(({ store }) => {
       <ImagesGrid
         shadowEnabled={false}
         images={data}
-        getPreview={(item) => `${item.split(".")[0]}.png`}
+        getPreview={(item) => {
+          console.log("===============", `${item.split(".")[0]}.png`);
+          return `${item.split(".")[0]}.png`;
+        }}
         isLoading={loading}
         onSelect={async (item) => {
           // download selected json
