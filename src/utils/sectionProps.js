@@ -37,7 +37,7 @@ export const SidePanelProps = {
   sections: [
     // SizeSection,
     // PhotosSection,
-    // UploadSection,
+    UploadSection,
     // ElementsSection,
     // VectorSection,
     // SizeSection,

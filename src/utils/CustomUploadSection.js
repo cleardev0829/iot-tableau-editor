@@ -25,18 +25,19 @@ const CustomUploadSection = {
             icon={"icon"}
             style={{ width: "100%", marginBottom: "20px" }}
             onClick={() => {
-              document.querySelector("#load-project").click();
+              document.querySelector("#load-image").click();
             }}
           >
             Upload Image
           </Button>
           <input
             type="file"
-            id="load-project"
-            accept=".png"
+            id="load-image"
+            accept="image/*"
             ref={inputRef}
             style={{ width: "180px", display: "none" }}
             onChange={(e) => {
+              alert();
               var input = e.target;
 
               if (!input.files.length) {
