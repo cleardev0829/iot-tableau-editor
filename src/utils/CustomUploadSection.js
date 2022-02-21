@@ -37,17 +37,17 @@ const CustomUploadSection = {
             ref={inputRef}
             style={{ width: "180px", display: "none" }}
             onChange={(e) => {
-              alert();
               var input = e.target;
 
               if (!input.files.length) {
+                alert("no files");
                 return;
               }
 
               var reader = new FileReader();
               reader.onloadend = function () {
                 var text = reader.result;
-
+                console.log("=====", text);
                 const imageURL = `data:image/png;base64,${btoa(reader.result)}`;
                 const imageFile = dataURLtoFile(imageURL, `${makeid(40)}.png`);
                 uploadFileToBlob(imageFile);
