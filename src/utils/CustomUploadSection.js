@@ -33,7 +33,7 @@ const CustomUploadSection = {
           <input
             type="file"
             id="load-project"
-            accept=".json,.polotno"
+            accept=".png,.polotno"
             ref={inputRef}
             style={{ width: "180px", display: "none" }}
             onChange={(e) => {
