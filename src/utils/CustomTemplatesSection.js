@@ -16,7 +16,7 @@ export const TemplatesPanel = observer(({ store }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(async () => {
-    const response = await getBlobsInContainer();
+    const response = await getBlobsInContainer("tableau-templates");
     const jsonFiles = _.filter(response, (item) => item.name.includes(".json"));
     const jsonUrls = _.map(jsonFiles, "blobUrl");
     setData(jsonUrls);
