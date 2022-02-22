@@ -50,7 +50,7 @@ const CustomUploadSection = {
             style={{ width: "180px", display: "none" }}
             onChange={(e) => {
               var input = e.target;
-              console.log("=====input", input);
+              console.log("=====input", input.files, input.files.length);
               if (!input.files.length) {
                 alert("no files");
                 return;
