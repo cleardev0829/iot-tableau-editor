@@ -59,7 +59,14 @@ const CustomUploadSection = {
               var reader = new FileReader();
               reader.onloadend = function () {
                 var text = reader.result;
-                console.log("=====", text);
+                console.log("=====onloadend", text);
+                const imageURL = `data:image/png;base64,${btoa(reader.result)}`;
+                const imageFile = dataURLtoFile(imageURL, `${makeid(40)}.png`);
+                uploadFileToBlob(imageFile, "tableau-images");
+              };
+              reader.onload = function () {
+                var text = reader.result;
+                console.log("=====onload", text);
                 const imageURL = `data:image/png;base64,${btoa(reader.result)}`;
                 const imageFile = dataURLtoFile(imageURL, `${makeid(40)}.png`);
                 uploadFileToBlob(imageFile, "tableau-images");
