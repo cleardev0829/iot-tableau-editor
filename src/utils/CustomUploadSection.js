@@ -83,10 +83,10 @@ const CustomUploadSection = {
             // pos - relative mouse position on drop. undefined if user just clicked on image
             // element - model from your store if images was dropped on an element.
             //    Can be useful if you want to change some props on existing element instead of creating a new one
-            const { width, height } = await getImageSize(image.url);
+            const { width, height } = await getImageSize(image);
             store.activePage.addElement({
               type: "image",
-              src: image.url,
+              src: image,
               width,
               height,
               x: pos?.x || 0,
