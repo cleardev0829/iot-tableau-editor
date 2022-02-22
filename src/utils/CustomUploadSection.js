@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import _ from "lodash";
 import FaShapes from "@meronex/icons/fa/FaShapes";
 import { SectionTab } from "polotno/side-panel";
 import { observer } from "mobx-react-lite";
 import { Button } from "@blueprintjs/core";
 import { dataURLtoFile, makeid } from "../file";
 import uploadFileToBlob from "./azure-storage-blob";
+import { ImagesGrid } from "polotno/side-panel/images-grid";
+import { getBlobsInContainer } from "./azure-storage-blob";
+import { getImageSize } from "polotno/utils/image";
 
 const CustomUploadSection = {
   name: "custom",
@@ -15,7 +19,19 @@ const CustomUploadSection = {
   ),
   // we need observer to update component automatically on any store changes
   Panel: observer(({ store }) => {
+    const [data, setData] = useState([]);
+    const [loading, setLoading] = useState(true);
     const inputRef = React.useRef();
+
+    useEffect(async () => {
+      const response = await getBlobsInContainer("tableau-images");
+      // const jsonFiles = _.filter(response, (item) =>
+      //   item.name.includes(".json")
+      // );
+      const urls = _.map(response, "blobUrl");
+      setData(urls);
+      setLoading(false);
+    }, []);
 
     return (
       <div>
@@ -58,6 +74,33 @@ const CustomUploadSection = {
             }}
           />
         </label>
+
+        <ImagesGrid
+          shadowEnabled={false}
+          images={data}
+          getPreview={(item) => {
+            return item;
+          }}
+          isLoading={loading}
+          onSelect={async (image, pos, element) => {
+            // image - an item from your array
+            // pos - relative mouse position on drop. undefined if user just clicked on image
+            // element - model from your store if images was dropped on an element.
+            //    Can be useful if you want to change some props on existing element instead of creating a new one
+            const { width, height } = await getImageSize(image.url);
+            store.activePage.addElement({
+              type: "image",
+              src: image.url,
+              width,
+              height,
+              x: pos?.x || 0,
+              y: pos?.y || 0,
+            });
+          }}
+          rowsNumber={2}
+          isLoading={!data.length}
+          loadMore={false}
+        />
       </div>
     );
   }),

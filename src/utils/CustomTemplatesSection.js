@@ -20,13 +20,16 @@ export const TemplatesPanel = observer(({ store }) => {
     const jsonFiles = _.filter(response, (item) => item.name.includes(".json"));
     const jsonUrls = _.map(jsonFiles, "blobUrl");
     setData(jsonUrls);
+    setLoading(false);
   }, []);
 
-  useEffect(() => {
-    if (data.length > 0) {
-      setLoading(false);
-    }
-  }, [data]);
+  // useEffect(() => {
+  //   if (data.length > 0) {
+  //     setLoading(false);
+  //   } else {
+  //     setLoading(true);
+  //   }
+  // }, [data]);
 
   return (
     <div style={{ height: "100%" }}>
