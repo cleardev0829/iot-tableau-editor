@@ -22,12 +22,12 @@ const CustomUploadSection = {
     const [loading, setLoading] = useState(true);
     const inputRef = React.useRef();
 
-    useEffect(async () => {
-      const response = await getBlobsInContainer("tableau-images");
-      const urls = _.map(response, "blobUrl");
-      setData(urls);
-      setLoading(false);
-    }, []);
+    // useEffect(async () => {
+    //   const response = await getBlobsInContainer("tableau-images");
+    //   const urls = _.map(response, "blobUrl");
+    //   setData(urls);
+    //   setLoading(false);
+    // }, []);
 
     return (
       <div>
@@ -50,7 +50,7 @@ const CustomUploadSection = {
             style={{ width: "180px", display: "none" }}
             onChange={(e) => {
               var input = e.target;
-              console.log("=====input", input.files, input.files.length);
+
               if (!input.files.length) {
                 alert("no files");
                 return;
@@ -59,9 +59,12 @@ const CustomUploadSection = {
               var reader = new FileReader();
               reader.onloadend = function () {
                 var text = reader.result;
-                console.log("=====onloadend", text);
-                const imageURL = `data:image/png;base64,${btoa(reader.result)}`;
+
+                const imageURL = `data:image/png;base64,${window.btoa(
+                  unescape(encodeURIComponent(text))
+                )}`;
                 const imageFile = dataURLtoFile(imageURL, `${makeid(40)}.png`);
+                console.log(imageURL, imageFile);
                 uploadFileToBlob(imageFile, "tableau-images");
               };
               reader.onerror = function () {
