@@ -22,12 +22,16 @@ const CustomUploadSection = {
     const [loading, setLoading] = useState(true);
     const inputRef = React.useRef();
 
-    useEffect(async () => {
+    useEffect(() => {
+      loadImages();
+    }, []);
+
+    const loadImages = async () => {
       const response = await getBlobsInContainer("tableau-images");
       const urls = _.map(response, "blobUrl");
       setData(urls);
       setLoading(false);
-    }, []);
+    };
 
     return (
       <div>
@@ -65,7 +69,9 @@ const CustomUploadSection = {
                 )}`;
                 const imageFile = dataURLtoFile(imageURL, `${makeid(30)}.png`);
                 console.log(imageURL, imageFile);
-                uploadFileToBlob(imageFile, "tableau-images");
+                uploadFileToBlob(imageFile, "tableau-images").then(() =>
+                  loadImages()
+                );
               };
               reader.onerror = function () {
                 alert("Can not load the project.");
