@@ -22,12 +22,12 @@ const CustomUploadSection = {
     const [loading, setLoading] = useState(true);
     const inputRef = React.useRef();
 
-    // useEffect(async () => {
-    //   const response = await getBlobsInContainer("tableau-images");
-    //   const urls = _.map(response, "blobUrl");
-    //   setData(urls);
-    //   setLoading(false);
-    // }, []);
+    useEffect(async () => {
+      const response = await getBlobsInContainer("tableau-images");
+      const urls = _.map(response, "blobUrl");
+      setData(urls);
+      setLoading(false);
+    }, []);
 
     return (
       <div>
@@ -63,7 +63,7 @@ const CustomUploadSection = {
                 const imageURL = `data:image/png;base64,${window.btoa(
                   unescape(encodeURIComponent(text))
                 )}`;
-                const imageFile = dataURLtoFile(imageURL, `${makeid(40)}.png`);
+                const imageFile = dataURLtoFile(imageURL, `${makeid(30)}.png`);
                 console.log(imageURL, imageFile);
                 uploadFileToBlob(imageFile, "tableau-images");
               };
