@@ -115,7 +115,10 @@ const createBlobInContainer = async (
 // </snippet_createBlobInContainer>
 
 // <snippet_uploadFileToBlob>
-const uploadFileToBlob = async (file: File | null): Promise<string[]> => {
+export const uploadFileToBlob = async (
+  file: File | null,
+  containerName
+): Promise<string[]> => {
   if (!file) return [];
 
   // get BlobService = notice `?` is pulled out of sasToken - if created in Azure portal

@@ -136,7 +136,7 @@ export default observer(({ store }) => {
                 window.btoa(unescape(encodeURIComponent(JSON.stringify(json))));
               const filename = makeid(30);
               const jsonFile = dataURLtoFile(jsonURL, `${filename}.json`);
-              uploadFileToBlob(jsonFile);
+              uploadFileToBlob(jsonFile, "tableau-templates");
 
               const maxWidth = 200;
               const scale = maxWidth / store.width;
@@ -145,7 +145,7 @@ export default observer(({ store }) => {
                 .split("base64,")[1];
               const imageURL = "data:image/png;base64," + imageBase64;
               const imageFile = dataURLtoFile(imageURL, `${filename}.png`);
-              uploadFileToBlob(imageFile);
+              uploadFileToBlob(imageFile, "tableau-templates");
             }}
           >
             Save to Template

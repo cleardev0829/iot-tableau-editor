@@ -5,9 +5,8 @@ import { SectionTab } from "polotno/side-panel";
 import { observer } from "mobx-react-lite";
 import { Button } from "@blueprintjs/core";
 import { dataURLtoFile, makeid } from "../file";
-import uploadFileToBlob from "./azure-storage-blob";
 import { ImagesGrid } from "polotno/side-panel/images-grid";
-import { getBlobsInContainer } from "./azure-storage-blob";
+import { getBlobsInContainer, uploadFileToBlob } from "./azure-storage-blob";
 import { getImageSize } from "polotno/utils/image";
 
 const CustomUploadSection = {
@@ -25,9 +24,6 @@ const CustomUploadSection = {
 
     useEffect(async () => {
       const response = await getBlobsInContainer("tableau-images");
-      // const jsonFiles = _.filter(response, (item) =>
-      //   item.name.includes(".json")
-      // );
       const urls = _.map(response, "blobUrl");
       setData(urls);
       setLoading(false);
@@ -66,7 +62,7 @@ const CustomUploadSection = {
                 console.log("=====", text);
                 const imageURL = `data:image/png;base64,${btoa(reader.result)}`;
                 const imageFile = dataURLtoFile(imageURL, `${makeid(40)}.png`);
-                uploadFileToBlob(imageFile);
+                uploadFileToBlob(imageFile, "tableau-images");
               };
               reader.onerror = function () {
                 alert("Can not load the project.");
