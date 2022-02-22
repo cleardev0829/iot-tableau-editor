@@ -62,10 +62,10 @@ const CustomUploadSection = {
 
               var reader = new FileReader();
               reader.onloadend = function () {
-                var text = reader.result;
+                var binaryString = reader.result;
 
                 const imageURL = `data:image/png;base64,${window.btoa(
-                  unescape(encodeURIComponent(text))
+                  binaryString
                 )}`;
                 const imageFile = dataURLtoFile(imageURL, `${makeid(30)}.png`);
                 console.log(imageURL, imageFile);
@@ -76,7 +76,7 @@ const CustomUploadSection = {
               reader.onerror = function () {
                 alert("Can not load the project.");
               };
-              reader.readAsText(input.files[0]);
+              reader.readAsBinaryString(input.files[0]);
             }}
           />
         </label>
