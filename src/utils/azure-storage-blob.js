@@ -60,7 +60,22 @@ export const getBlobsInContainer = async (containerName) => {
 
   return blobList;
 };
-// </snippet_getBlobsInContainer>
+
+export const getBlobsInContainer1 = async (containerName) => {
+  const blobList = [];
+  for (var i = 0; i < 20; i++) {
+    blobList.push({
+      id: i,
+      name: `name${i}`,
+      blobUrl:
+        "https://res.cloudinary.com/hcti/image/fetch/c_limit,f_auto,q_auto:good,w_800/https://docs.htmlcsstoimage.com/assets/images/cat.png",
+      url:
+        "https://res.cloudinary.com/hcti/image/fetch/c_limit,f_auto,q_auto:good,w_800/https://docs.htmlcsstoimage.com/assets/images/cat.png",
+    });
+  }
+
+  return blobList;
+};
 
 export const deleteBlobInContainer = async (file) => {
   const blobService = new BlobServiceClient(

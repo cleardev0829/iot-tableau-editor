@@ -6,68 +6,30 @@ import { Tab, Tabs } from "@blueprintjs/core";
 import { ImagesGrid } from "polotno/side-panel/images-grid";
 import MdPhotoLibrary from "@meronex/icons/md/MdPhotoLibrary";
 import { getImageSize } from "polotno/utils/image";
+import {
+  getBlobsInContainer,
+  getBlobsInContainer1,
+} from "./azure-storage-blob";
 
 const PhotosPanel = observer(({ store }) => {
   const [images, setImages] = useState([]);
   const [selectedTabId, setSelectedTabId] = useState("MT42");
 
-  async function loadImages() {
-    // here we should implement your own API requests
-    setImages([]);
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-    // wait to emulate network request
-    await new Promise((resolve) => setTimeout(resolve, 3000));
+  useEffect(async () => {
+    loadTemplates();
+  }, [selectedTabId]);
 
-    // for demo images are hard coded
-    // in real app here will be something like JSON structure
-
-    const MT42 = [...Array(20)].map((_, index) => {
-      const n = index + 1;
-
-      return {
-        url: `./tabs/png/MT42/MT42 (${n}).png`,
-      };
-    });
-
-    const RT42 = [...Array(29)].map((_, index) => {
-      const n = index + 1;
-
-      return {
-        url: `./tabs/png/RT42/RT42 (${n}).png`,
-      };
-    });
-
-    const DISPLAYS = [...Array(4)].map((_, index) => {
-      const n = index + 1;
-
-      return {
-        url: `./tabs/png/DISPLAYS/DISPLAYS (${n}).png`,
-      };
-    });
-
-    const ENGRAVINGS = [...Array(7)].map((_, index) => {
-      const n = index + 1;
-
-      return {
-        url: `./tabs/png/ENGRAVINGS/ENGRAVINGS (${n}).png`,
-      };
-    });
-
-    const OTHERS = [...Array(2)].map((_, index) => {
-      const n = index + 1;
-
-      return {
-        url: `./tabs/png/OTHERS/OTHERS (${n}).png`,
-      };
-    });
-
-    const urls = _.concat(MT42, RT42, DISPLAYS, ENGRAVINGS, OTHERS);
-    setImages([...urls]);
-  }
-
-  useEffect(() => {
-    loadImages();
-  }, []);
+  const loadTemplates = async () => {
+    const response = await getBlobsInContainer(
+      `tableau-${selectedTabId.toLowerCase()}`
+    );
+    const urls = _.map(response, "blobUrl");
+    setData(urls);
+    setLoading(false);
+  };
 
   const handleTabChange = (tabId) => {
     setSelectedTabId(tabId);
@@ -75,17 +37,6 @@ const PhotosPanel = observer(({ store }) => {
 
   return (
     <div style={{ height: "100%", display: "flex", flexDirection: "column" }}>
-      {/* <InputGroup
-        leftIcon="search"
-        placeholder="Search..."
-        onChange={(e) => {
-          loadImages();
-        }}
-        style={{
-          marginBottom: "20px",
-        }}
-      /> */}
-
       <Tabs
         id="Tabs"
         animate={true}
@@ -100,17 +51,18 @@ const PhotosPanel = observer(({ store }) => {
       </Tabs>
 
       <ImagesGrid
-        images={_.filter(images, (image) => image.url.includes(selectedTabId))}
-        getPreview={(image) => image.url}
+        images={data}
+        getPreview={(item) => item}
+        isLoading={loading}
         onSelect={async (image, pos, element) => {
           // image - an item from your array
           // pos - relative mouse position on drop. undefined if user just clicked on image
           // element - model from your store if images was dropped on an element.
           //    Can be useful if you want to change some props on existing element instead of creating a new one
-          const { width, height } = await getImageSize(image.url);
+          const { width, height } = await getImageSize(image);
           store.activePage.addElement({
             type: "image",
-            src: image.url,
+            src: image,
             width,
             height,
             x: pos?.x || 0,

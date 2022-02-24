@@ -16,16 +16,16 @@ export const TemplatesPanel = observer(({ store }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(async () => {
-   loadTemplates();
+    loadTemplates();
   }, []);
 
-  const loadTemplates = () => {
+  const loadTemplates = async () => {
     const response = await getBlobsInContainer("tableau-templates");
     const jsonFiles = _.filter(response, (item) => item.name.includes(".json"));
     const jsonUrls = _.map(jsonFiles, "blobUrl");
     setData(jsonUrls);
     setLoading(false);
-  }
+  };
 
   return (
     <div style={{ height: "100%" }}>

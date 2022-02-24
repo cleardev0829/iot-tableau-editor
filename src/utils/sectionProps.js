@@ -44,7 +44,7 @@ export const SidePanelProps = {
     // BackgroundSection,
     // TemplatesSection,
     CustomTemplatesSection,
-    CustomUploadSection,
+    // CustomUploadSection,
     CustomSizesSection,
     TextSection,
     CustomPhotosSection,
