@@ -47,7 +47,7 @@ export const SidePanelProps = {
     // CustomTemplatesSection,
     CustomSizesSection,
     TextSection,
-    // CustomPhotosSection,
+    CustomPhotosSection,
   ],
   defaultSection: "sizes",
 };
