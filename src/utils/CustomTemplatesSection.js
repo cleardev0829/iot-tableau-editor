@@ -1,15 +1,11 @@
 import React, { useEffect, useState } from "react";
-import fs from "fs";
-import path from "path";
 import _ from "lodash";
 import { observer } from "mobx-react-lite";
-import { useInfiniteAPI } from "polotno/utils/use-api";
-
 import { SectionTab } from "polotno/side-panel";
 import MdPhotoLibrary from "@meronex/icons/md/MdPhotoLibrary";
-
 import { ImagesGrid } from "polotno/side-panel/images-grid";
-import { getBlobsInContainer } from "./azure-storage-blob";
+import axios from "axios";
+import { API_URL } from "./utils";
 
 export const TemplatesPanel = observer(({ store }) => {
   const [data, setData] = useState([]);
@@ -20,8 +16,11 @@ export const TemplatesPanel = observer(({ store }) => {
   }, []);
 
   const loadTemplates = async () => {
-    const response = await getBlobsInContainer("tableau-templates");
-    const jsonFiles = _.filter(response, (item) => item.name.includes(".json"));
+    const response = await axios.post(`${API_URL}/azure/getBlobsInContainer `, {
+      containerName: "tableau-templates",
+    });
+    const data = await response.data;
+    const jsonFiles = _.filter(data, (item) => item.name.includes(".json"));
     const jsonUrls = _.map(jsonFiles, "blobUrl");
     setData(jsonUrls);
     setLoading(false);

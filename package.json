@@ -14,6 +14,7 @@
     "@azure/storage-blob": "^12.8.0",
     "@blueprintjs/docs-theme": "^3.10.17",
     "@meronex/icons": "^4.0.0",
+    "axios": "^0.26.0",
     "localforage": "^1.10.0",
     "polotno": "^0.33.2",
     "polotno-node": "^0.3.3",
