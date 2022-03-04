@@ -63,6 +63,7 @@ const PhotosPanel = observer(({ store }) => {
         animate={true}
         onChange={handleTabChange}
         selectedTabId={selectedTabId}
+        vertical={tabs.length > 5 ? true : false}
       >
         {tabs.map((tab) => (
           <Tab
