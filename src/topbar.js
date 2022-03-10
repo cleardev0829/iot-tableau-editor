@@ -172,10 +172,10 @@ export default observer(({ store }) => {
               pdf.addImage(imageURL, "PNG", pos.x, pos.y, imgWidth, imgHeight);
               pdf.rect(pos.x, pos.y, imgWidth, imgHeight);
 
-              const label = `${parseInt(imgWidth)} x ${parseInt(imgHeight)}`;
+              const text = `${parseInt(imgWidth)} x ${parseInt(imgHeight)}`;
               const xOffset = pdfWidth / 2;
               const yOffset = pos.y + imgHeight + 6;
-              pdf.text(label, xOffset, yOffset, "center");
+              pdf.text(text, xOffset, yOffset, "center");
 
               pdf.save("download.pdf");
             }}
