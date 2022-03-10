@@ -172,7 +172,7 @@ export default observer(({ store }) => {
               pdf.addImage(imageURL, "PNG", pos.x, pos.y, imgWidth, imgHeight);
               pdf.rect(pos.x, pos.y, imgWidth, imgHeight);
 
-              const label = "800 x 600";
+              const label = `${parseInt(imgWidth)} x ${parseInt(imgHeight)}`;
               const xOffset = pdfWidth / 2;
               const yOffset = pos.y + imgHeight + 6;
               pdf.text(label, xOffset, yOffset, "center");
