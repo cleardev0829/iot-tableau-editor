@@ -67,6 +67,49 @@ export const dataURLtoFile = (dataurl, filename) => {
   return new File([u8arr], filename, { type: mime });
 };
 
+export function dataURItoBlob(dataurl) {
+  var arr = dataurl.split(","),
+    mime = arr[0].match(/:(.*?);/)[1],
+    bstr = atob(arr[1]),
+    n = bstr.length,
+    u8arr = new Uint8Array(n);
+
+  while (n--) {
+    u8arr[n] = bstr.charCodeAt(n);
+  }
+
+  const blob = new Blob([u8arr], { type: mime });
+  return blob;
+}
+
+export function base64toPDF(data) {
+  var bufferArray = base64ToArrayBuffer(data);
+  var blobStore = new Blob([bufferArray], { type: "application/pdf" });
+  if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+    window.navigator.msSaveOrOpenBlob(blobStore);
+    return;
+  }
+  var data = window.URL.createObjectURL(blobStore);
+  var link = document.createElement("a");
+  document.body.appendChild(link);
+  link.href = data;
+  link.download = "file.pdf";
+  link.click();
+  window.URL.revokeObjectURL(data);
+  link.remove();
+}
+
+function base64ToArrayBuffer(data) {
+  var bString = window.atob(data);
+  var bLength = bString.length;
+  var bytes = new Uint8Array(bLength);
+  for (var i = 0; i < bLength; i++) {
+    var ascii = bString.charCodeAt(i);
+    bytes[i] = ascii;
+  }
+  return bytes;
+}
+
 export function makeid(length) {
   var result = "";
   var characters =

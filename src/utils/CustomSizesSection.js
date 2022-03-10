@@ -3,9 +3,7 @@ import { observer } from "mobx-react-lite";
 import { SectionTab } from "polotno/side-panel";
 import { Button, InputGroup } from "@blueprintjs/core";
 import { GiResize } from "react-icons/gi";
-
-const rateDown = 34 / 483;
-const rateUp = 483 / 34;
+import { rateUp, rateDown } from "./utils";
 
 const AVAILABLE_SIZES = [
   // { width: 1932, height: 1932 },
@@ -23,7 +21,6 @@ const SizesPanel = observer(({ store }) => {
     height: store.height * rateDown,
   });
 
-  console.log(store.width, store.height);
   useEffect(() => {
     store.setSize(parseFloat(pixelSize.width), parseFloat(pixelSize.height));
   }, [store, pixelSize]);
