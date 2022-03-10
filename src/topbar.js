@@ -172,11 +172,12 @@ export default observer(({ store }) => {
               pdf.addImage(imageURL, "PNG", pos.x, pos.y, imgWidth, imgHeight);
               pdf.rect(pos.x, pos.y, imgWidth, imgHeight);
 
-              pdf.save("download.pdf");
+              const label = "800 x 600";
+              const xOffset = pdfWidth / 2;
+              const yOffset = pos.y + imgHeight + 6;
+              pdf.text(label, xOffset, yOffset, "center");
 
-              // downloadFile(imageURL, "polotno.png");
-              // store.saveAsImage({ ignoreBackground: true });
-              // store.saveAsPDF({ ignoreBackground: true });
+              pdf.save("download.pdf");
             }}
           >
             Download
