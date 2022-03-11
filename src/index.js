@@ -26,25 +26,26 @@ const onResize = (element, callback) => {
   callback();
 };
 
+const onChange = (element) => {
+  if (element && element.type === "image") {
+    if (element.custom) {
+      onResize(element, () => {
+        element.set({
+          height: element.custom.height,
+          width: element.custom.width,
+        });
+      });
+    } else {
+      element.set({
+        custom: { width: element.width, height: element.height },
+      });
+    }
+  }
+};
+
 store.on("change", () => {
   const elements = store.selectedElements;
-  elements.map((element) => {
-    console.log("element", element);
-    if (element && element.type === "image") {
-      if (element.custom) {
-        onResize(element, () => {
-          element.set({
-            height: element.custom.height,
-            width: element.custom.width,
-          });
-        });
-      } else {
-        element.set({
-          custom: { width: element.width, height: element.height },
-        });
-      }
-    }
-  });
+  elements.map((element) => onChange(element));
 
   try {
     const json = store.toJSON();

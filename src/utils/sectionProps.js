@@ -1,15 +1,15 @@
 import {
   // DEFAULT_SECTIONS,
-  TemplatesSection,
+  // TemplatesSection,
   TextSection,
-  PhotosSection,
+  // PhotosSection,
   // ElementsSection,
-  UploadSection,
+  // UploadSection,
   // BackgroundSection,
-  SizeSection,
+  // SizeSection,
 } from "polotno/side-panel";
 // import { VectorSection } from "../svg-sidepanel";
-import CustomUploadSection from "./CustomUploadSection";
+// import CustomUploadSection from "./CustomUploadSection";
 import CustomTemplatesSection from "./CustomTemplatesSection";
 import CustomPhotosSection from "./CustomPhotosSection";
 import CustomSizesSection from "./CustomSizesSection";

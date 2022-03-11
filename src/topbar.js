@@ -9,17 +9,17 @@ import {
   // Dialog,
   // Classes,
 } from "@blueprintjs/core";
-import { Select } from "@blueprintjs/select";
+// import { Select } from "@blueprintjs/select";
 // import FaGithub from "@meronex/icons/fa/FaGithub";
 // import FaDiscord from "@meronex/icons/fa/FaDiscord";
-import DownloadButton from "polotno/toolbar/download-button";
+// import DownloadButton from "polotno/toolbar/download-button";
 import { downloadFile } from "polotno/utils/download";
 import styled from "polotno/utils/styled";
 import jsPDF from "jspdf";
 
-import { dataURLtoFile, dataURItoBlob, makeid } from "./file";
+import { dataURLtoFile, makeid } from "./file";
 import uploadFileToBlob from "./utils/azure-storage-blob";
-import { rateDown, rateUp } from "./utils/utils";
+import { rateDown } from "./utils/utils";
 
 const NavbarContainer = styled("div")`
   @media screen and (max-width: 500px) {

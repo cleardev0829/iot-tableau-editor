@@ -87,7 +87,6 @@ const CustomUploadSection = {
           getPreview={(item) => {
             return item;
           }}
-          isLoading={loading}
           onSelect={async (image, pos, element) => {
             // image - an item from your array
             // pos - relative mouse position on drop. undefined if user just clicked on image

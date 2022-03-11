@@ -1,5 +1,5 @@
 import React from "react";
-import localforage from "localforage";
+// import localforage from "localforage";
 import { PolotnoContainer, SidePanelWrap, WorkspaceWrap } from "polotno";
 import { Toolbar } from "polotno/toolbar/toolbar";
 import { ZoomButtons } from "polotno/toolbar/zoom-buttons";
@@ -34,7 +34,7 @@ function clearLog() {
 const App = ({ store }) => {
   console.log("store:", store);
   unstable_setRemoveBackgroundEnabled(false); // hide Remove background
-  // clearLog();
+  clearLog();
 
   const handleDrop = (ev) => {
     // Prevent default behavior (Prevent file from being opened)

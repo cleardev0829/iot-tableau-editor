@@ -15,19 +15,24 @@ const PhotosPanel = observer(({ store }) => {
 
   const [data, setData] = useState([]);
 
-  useEffect(async () => {
-    const response = await axios.post(
-      `${API_URL}/azure/listContainersInStorage`,
-      {}
-    );
-    const data = await response.data;
-    const _data = _.filter(
-      data,
-      (item) =>
-        item.name.split("-")[0] === prefix && item.name !== "tableau-templates"
-    );
+  useEffect(() => {
+    async function fetchData() {
+      const response = await axios.post(
+        `${API_URL}/azure/listContainersInStorage`,
+        {}
+      );
+      const data = await response.data;
+      const _data = _.filter(
+        data,
+        (item) =>
+          item.name.split("-")[0] === prefix &&
+          item.name !== "tableau-templates"
+      );
 
-    setTabs(_data);
+      setTabs(_data);
+    }
+
+    fetchData();
   }, []);
 
   useEffect(() => {
@@ -36,19 +41,19 @@ const PhotosPanel = observer(({ store }) => {
     }
   }, [tabs]);
 
-  useEffect(async () => {
-    loadTemplates();
+  useEffect(() => {
+    loadTemplates(selectedTabId);
   }, [selectedTabId]);
 
   const handleTabChange = (tabId) => {
     setSelectedTabId(tabId);
   };
 
-  const loadTemplates = async () => {
-    if (!selectedTabId) return;
+  const loadTemplates = async (tabId) => {
+    if (!tabId) return;
 
     const response = await axios.post(`${API_URL}/azure/getBlobsInContainer `, {
-      containerName: selectedTabId,
+      containerName: tabId,
     });
     const data = await response.data;
 
